@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    /* Slightly smaller type scale across the whole site */
+    font-size: 16px;
+  }
+  body {
+    letter-spacing: -0.006em;
+  }
+  h1, h2, h3 {
+    letter-spacing: -0.025em;
+  }
+  ::selection {
+    background: #1dcd9f;
+    color: #000;
+  }
+  :focus-visible {
+    outline: 2px solid #1dcd9f;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: #1dcd9f;
+  color: #000;
+  font-weight: 600;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Design system ---------- */
+
+/* Faint nebula clouds behind the star canvas */
+.cosmos {
+  background:
+    radial-gradient(60vw 40vw at 85% 15%, rgba(120, 80, 220, 0.10), transparent 60%),
+    radial-gradient(50vw 40vw at 10% 80%, rgba(29, 205, 159, 0.07), transparent 60%),
+    radial-gradient(40vw 30vw at 50% 50%, rgba(40, 60, 140, 0.06), transparent 70%),
+    #05060a;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] border border-white/[0.08] backdrop-blur-[2px];
+  }
+  .glass-hover {
+    @apply transition-all duration-300 hover:bg-white/[0.05] hover:border-accent/40;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-accent;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-6 bg-accent/70;
+  }
+  .section-title {
+    @apply text-2xl sm:text-3xl font-semibold text-white;
+  }
+  .text-gradient {
+    background: linear-gradient(110deg, #ffffff 20%, #9ff3dc 45%, #1dcd9f 60%, #ffffff 80%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 9s ease-in-out infinite;
+  }
+  .chip {
+    @apply px-2.5 py-1 rounded-md text-xs text-gray-300 bg-white/[0.04] border border-white/[0.08];
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-black text-sm font-medium transition-all duration-300 hover:bg-white hover:shadow-[0_0_30px_rgba(29,205,159,0.35)];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-sm font-medium text-white transition-all duration-300 hover:border-accent/60 hover:bg-white/[0.04];
+  }
+}
+
+@keyframes shine {
+  0%, 100% { background-position: 100% 0; }
+  50% { background-position: 0 0; }
+}
+
+/* Hero entrance: staggered fade-up */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+.enter {
+  animation: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.enter-1 { animation-delay: 0.05s; }
+.enter-2 { animation-delay: 0.15s; }
+.enter-3 { animation-delay: 0.25s; }
+.enter-4 { animation-delay: 0.35s; }
+.enter-5 { animation-delay: 0.45s; }
+
+/* Scroll-driven reveal (pure CSS, no JS). Browsers without support just show content. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 22%;
+  }
+}
+
+/* Rotating orbit rings around the profile photo */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.orbit {
+  animation: spin-slow 28s linear infinite;
+}
+.orbit-reverse {
+  animation: spin-slow 40s linear infinite reverse;
+}
+
+/* Live status dot */
+@keyframes ping-soft {
+  0% { transform: scale(1); opacity: 0.7; }
+  80%, 100% { transform: scale(2.4); opacity: 0; }
+}
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: #1dcd9f;
+  animation: ping-soft 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes role-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-role {
+  animation: role-in 0.5s ease-out;
+}
+
+/* ---------- Blog article typography ---------- */
+.prose-blog {
+  color: #c9ced6;
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+.prose-blog > * + * { margin-top: 1.15em; }
+.prose-blog h2,
+.prose-blog h3 {
+  position: relative;
+  color: #fff;
+  font-weight: 600;
+  scroll-margin-top: 6rem;
+  line-height: 1.3;
+}
+.prose-blog h2 { font-size: 1.45rem; margin-top: 2.4em; }
+.prose-blog h3 { font-size: 1.15rem; margin-top: 1.8em; }
+.prose-blog .anchor {
+  position: absolute;
+  left: -1.1em;
+  color: #1dcd9f;
+  opacity: 0;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.prose-blog h2:hover .anchor,
+.prose-blog h3:hover .anchor { opacity: 0.8; }
+.prose-blog a { color: #1dcd9f; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(29, 205, 159, 0.4); }
+.prose-blog a:hover { text-decoration-color: #1dcd9f; }
+.prose-blog strong { color: #fff; font-weight: 600; }
+.prose-blog ul, .prose-blog ol { padding-left: 1.4em; }
+.prose-blog ul { list-style: disc; }
+.prose-blog ol { list-style: decimal; }
+.prose-blog li + li { margin-top: 0.4em; }
+.prose-blog li::marker { color: #1dcd9f; }
+.prose-blog blockquote {
+  border-left: 2px solid #1dcd9f;
+  padding: 0.25em 0 0.25em 1.1em;
+  color: #9ca3af;
+  font-style: italic;
+}
+.prose-blog code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.86em;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 0.12em 0.4em;
+  color: #e5e7eb;
+}
+.prose-blog pre {
+  background: rgba(8, 10, 16, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.1em 1.25em;
+  overflow-x: auto;
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+.prose-blog pre code { background: none; border: 0; padding: 0; font-size: inherit; color: #d1d5db; }
+.prose-blog table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  display: block;
+  overflow-x: auto;
+}
+.prose-blog th, .prose-blog td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.6em 0.85em;
+  text-align: left;
+}
+.prose-blog th { background: rgba(255, 255, 255, 0.04); color: #fff; font-weight: 600; }
+.prose-blog hr { border-color: rgba(255, 255, 255, 0.08); }
+.prose-blog input[type="checkbox"] { accent-color: #1dcd9f; margin-right: 0.4em; }
