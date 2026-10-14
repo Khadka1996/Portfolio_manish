@@ -56,12 +56,12 @@ const TermsPage = () => {
                 <li>Use the materials for any commercial purpose</li>
                 <li>Attempt to decompile or reverse engineer any software</li>
                 <li>Remove any copyright or other proprietary notations</li>
-                <li>Transfer the materials to another person or "mirror" the materials</li>
+                <li>Transfer the materials to another person or &quot;mirror&quot; the materials</li>
               </ul>
 
               <h2 className="text-xl font-semibold text-[#1DCD9F] mb-4">3. Disclaimer</h2>
               <p className="text-gray-300 mb-6">
-                The materials on our website are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+                The materials on our website are provided on an &apos;as is&apos; basis. We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
               </p>
 
               <h2 className="text-xl font-semibold text-[#1DCD9F] mb-4">4. Limitations</h2>

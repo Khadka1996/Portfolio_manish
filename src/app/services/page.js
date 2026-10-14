@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FiCode, FiLayers, FiSmartphone, FiDatabase, FiServer, FiShield, FiBarChart2 } from 'react-icons/fi';
 import NavBar from '../components/Header';
@@ -252,21 +253,21 @@ const ServicesPage = () => {
           >
             <h2 className="text-2xl sm:text-3xl font-semibold mb-6">Ready to start your project?</h2>
             <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-              Let's discuss how I can help bring your ideas to life with custom digital solutions.
+              Let&apos;s discuss how I can help bring your ideas to life with custom digital solutions.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a 
-                href="/contact" 
+              <Link
+                href="/contact"
                 className="px-8 py-4 bg-gradient-to-r from-[#1DCD9F] to-[#169976] text-white rounded-full font-medium hover:from-[#169976] hover:to-[#1DCD9F] transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Get in Touch
-              </a>
-              <a 
-                href="/work" 
+              </Link>
+              <Link
+                href="/work"
                 className="px-8 py-4 border-2 border-[#1DCD9F] text-[#1DCD9F] rounded-full font-medium hover:bg-[#1DCD9F]/10 transition-all duration-300"
               >
                 View My Work
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>

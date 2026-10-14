@@ -176,7 +176,7 @@ const ContactPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold mb-2 text-[#1DCD9F]">Send Me a Message</h2>
-            <p className="text-gray-400 mb-8">Fill out the form below and I'll get back to you as soon as possible.</p>
+            <p className="text-gray-400 mb-8">Fill out the form below and I&apos;ll get back to you as soon as possible.</p>
             
             {formStatus.success && (
               <motion.div 

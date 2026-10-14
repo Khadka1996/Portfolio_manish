@@ -207,7 +207,7 @@ export default function ArticleList() {
         </DialogTitle>
         <DialogContent>
           <Typography>
-            Are you sure you want to delete "{articleToDelete?.title}"? This action cannot be undone.
+            Are you sure you want to delete &quot;{articleToDelete?.title}&quot;? This action cannot be undone.
           </Typography>
         </DialogContent>
         <DialogActions>
